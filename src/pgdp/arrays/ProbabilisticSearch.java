@@ -38,8 +38,12 @@ public class ProbabilisticSearch extends MiniJava {
 
         int newStep = asc ? (int) (position + Math.pow(2d, calls - 1)) : (int) (position - Math.pow(2d, calls - 1));
 
-        if (newStep >= arr.length) newStep = arr.length - 1;
-        else if (newStep < 0) newStep = 0;
+        if (newStep >= arr.length){
+            newStep = arr.length - 1;
+        }
+        else if (newStep < 0){
+            newStep = 0;
+        }
 
         boolean isBetween = asc ? arr[newStep] > value : arr[newStep] < value;
 
@@ -48,9 +52,9 @@ public class ProbabilisticSearch extends MiniJava {
         if (arr[position] == value) {
             return new int[]{position, calls};
         } else if (asc && isBetween) {
-            return find0(arr, value, newStep, position, ++calls);
+            return find0(arr, value, position + 1, newStep - 1, ++calls);
         } else if (!asc && isBetween) {
-            return find0(arr, value, position, newStep, ++calls);
+            return find0(arr, value, newStep + 1, position - 1, ++calls);
         } else if (asc) {
             return recSearch(arr, value, newStep, position, true, ++calls);
         } else {
@@ -106,8 +110,24 @@ public class ProbabilisticSearch extends MiniJava {
     }
 
     public static void main(String[] args) {
-        // Not part of the exercise but can be helpful for debugging purposes
-        int[] exampleArray = new int[]{6, 20, 22, 35, 51, 54, 59, 74, 77, 80, 87, 94, 97};
-        compareApproaches(exampleArray, 6, 97);
+//        // Not part of the exercise but can be helpful for debugging purposes
+//        int[] exampleArray = new int[]{6, 20, 22, 35, 51, 54, 59, 74, 77, 80, 87, 94, 97};
+//        compareApproaches(exampleArray, 6, 97);
+//        System.out.println(Arrays.toString(
+//                probalisticSearch(exampleArray, 3)));
+//        System.out.println(Arrays.toString(probalisticSearch(exampleArray, 25)));
+//        System.out.println(Arrays.toString(probalisticSearch(exampleArray, 33)));
+//        System.out.println(Arrays.toString(
+//                probalisticSearch(exampleArray, 75)));
+//        System.out.println(Arrays.toString(probalisticSearch(exampleArray, 54)));
+//        System.out.println(Arrays.toString(probalisticSearch(exampleArray, 61)));
+//        System.out.println(Arrays.toString(probalisticSearch(exampleArray, 74)));
+//        System.out.println(Arrays.toString(probalisticSearch(exampleArray, 75)));
+
+//        System.out.println(Arrays.toString(
+//                find0(new int[]{6, 20}, 18, 0, 1, 0)));
+//        System.out.println(Arrays.toString(find0(new int[]{51,54,59}, 54, 0, 2, 0)));
+
     }
+
 }
