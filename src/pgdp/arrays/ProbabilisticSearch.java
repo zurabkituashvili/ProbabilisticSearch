@@ -1,6 +1,8 @@
 package pgdp.arrays;
 
 
+import java.util.Arrays;
+
 public class ProbabilisticSearch extends MiniJava {
     /**
      * Binary search slightly modified from the lecture
@@ -59,12 +61,12 @@ public class ProbabilisticSearch extends MiniJava {
 
     public static void compareApproaches(int[] arr, int min, int max) {
 
-        long maxBinCalls = -1;
+        long maxBinCalls = 0;
         long maxBinValue = Long.MIN_VALUE;
-        long totalBinCalls = -1;
-        long maxProbCalls = -1;
+        long totalBinCalls = 0;
+        long maxProbCalls = 0;
         long maxProbValue = Long.MIN_VALUE;
-        long totalProbCalls = -1;
+        long totalProbCalls = 0;
 
         for (int i = min; i <= max; i++) {
             int[] binResult = find(arr, i);
@@ -106,7 +108,6 @@ public class ProbabilisticSearch extends MiniJava {
     public static void main(String[] args) {
         // Not part of the exercise but can be helpful for debugging purposes
         int[] exampleArray = new int[]{6, 20, 22, 35, 51, 54, 59, 74, 77, 80, 87, 94, 97};
-        compareApproaches(exampleArray, 7, 98);
-
+        compareApproaches(exampleArray, 6, 97);
     }
 }
