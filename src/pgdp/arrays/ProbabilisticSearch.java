@@ -26,7 +26,7 @@ public class ProbabilisticSearch extends MiniJava {
 
     public static int[] probalisticSearch(int[] arr, int value) {
         int position = (int) Math.round((value - arr[0]) / ((double) (arr[arr.length - 1] - arr[0]) / (arr.length - 1)));
-        //if (position < 0) position = 0;
+        if (position < 0) position = 0;
         boolean asc = arr[position] < value;
         return recSearch(arr, value, position, -1, asc, 1);
     }
