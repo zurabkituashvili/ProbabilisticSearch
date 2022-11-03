@@ -36,29 +36,29 @@ public class ProbabilisticSearch extends MiniJava {
         if (position >= arr.length) position = arr.length - 1;
         else if (position < 0) position = 0;
 
-        int newStep = asc ? (int) (position + Math.pow(2d, calls - 1)) : (int) (position - Math.pow(2d, calls - 1));
+        int nextStep = asc ? (int) (position + Math.pow(2d, calls - 1)) : (int) (position - Math.pow(2d, calls - 1));
 
-        if (newStep >= arr.length){
-            newStep = arr.length - 1;
+        if (nextStep >= arr.length){
+            nextStep = arr.length - 1;
         }
-        else if (newStep < 0){
-            newStep = 0;
+        else if (nextStep < 0){
+            nextStep = 0;
         }
 
-        boolean isBetween = asc ? arr[newStep] > value : arr[newStep] < value;
+        boolean isBetween = asc ? arr[nextStep] > value : arr[nextStep] < value;
 
         if (position == prevPosition) return new int[]{-1, calls};
 
         if (arr[position] == value) {
             return new int[]{position, calls};
         } else if (asc && isBetween) {
-            return find0(arr, value, position + 1, newStep - 1, ++calls);
+            return find0(arr, value, position + 1, nextStep - 1, ++calls);
         } else if (!asc && isBetween) {
-            return find0(arr, value, newStep + 1, position - 1, ++calls);
+            return find0(arr, value, nextStep + 1, position - 1, ++calls);
         } else if (asc) {
-            return recSearch(arr, value, newStep, position, true, ++calls);
+            return recSearch(arr, value, nextStep, position, true, ++calls);
         } else {
-            return recSearch(arr, value, newStep, position, false, ++calls);
+            return recSearch(arr, value, nextStep, position, false, ++calls);
         }
 
     }
@@ -79,14 +79,14 @@ public class ProbabilisticSearch extends MiniJava {
                 maxBinValue = i;
             }
 
-            int[] proRes = probalisticSearch(arr, i);
-            if (proRes[1] > maxProbCalls) {
-                maxProbCalls = proRes[1];
+            int[] probResult = probalisticSearch(arr, i);
+            if (probResult[1] > maxProbCalls) {
+                maxProbCalls = probResult[1];
                 maxProbValue = i;
             }
 
             totalBinCalls += binResult[1];
-            totalProbCalls += proRes[1];
+            totalProbCalls += probResult[1];
 
         }
 
